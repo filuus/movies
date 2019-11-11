@@ -7,13 +7,17 @@ class List extends Component {
 
   render() {
     return (
-      <div>
+      <div className="list-of-films">
         {this.props.loading || !this.props.listOfFilms ? (
           <div>loading...</div>
         ) : (
           <ul>
             {this.props.listOfFilms.map(function(film) {
-              return <li key={film.imdbID}>{film.Title}</li>;
+              return (
+                <li key={film.imdbID} onClick={() => console.log(`test`)}>
+                  {film.Title}
+                </li>
+              );
             })}
           </ul>
         )}

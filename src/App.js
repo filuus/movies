@@ -25,7 +25,7 @@ class App extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="main-container">
         <Search
           textSend={this.state.textSend}
           onGetFilms={this.handleGetFilms}

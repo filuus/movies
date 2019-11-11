@@ -1,7 +1,81 @@
 $text-color: blue;
 
-.App {
-  margin: 1rem;
-  font-family: Arial, Helvetica, sans-serif;
-  color: $text-color;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 10px;
+}
+
+li {
+  list-style: none;
+}
+
+.main-container {
+  display: grid;
+
+  .search-fields,
+  .list-of-films {
+    align-self: center;
+    justify-self: center;
+    width: 90%;
+    margin: auto;
+  }
+
+  .search-fields {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 20px 1fr auto;
+
+    input[type="text"],
+    input[type="button"] {
+      margin: 0;
+      font-size: 2em;
+      background: #fff;
+      padding: 20px 20px 20px 20px;
+      height: 70px;
+      color: #666;
+      border: 3px solid #666;
+    }
+
+    input[type="text"] {
+      grid-column: 1/5;
+      grid-row: 2/3;
+    }
+
+    input[type="text"]::placeholder {
+      color: #dfdfdf;
+    }
+
+    input[type="button"] {
+      display: block;
+      grid-column: 5/6;
+      grid-row: 2/3;
+      text-align: center;
+    }
+    input[type="button"]:hover {
+      color: #fff;
+      background-color: #666;
+      cursor: pointer;
+    }
+  }
+
+  .list-of-films {
+    ul {
+      li {
+        padding: 1em;
+        border-bottom: 1px solid #ddd;
+        font-size: 1.8em;
+      }
+      li:hover {
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+  }
 }

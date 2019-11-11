@@ -15,10 +15,10 @@ class Search extends Component {
   };
   render() {
     return (
-      <React.Fragment>
+      <div className="search-fields">
         <input type="text" onChange={this.handleChange} />
         <input type="button" value="Search" onClick={this.handleGetFilms} />
-      </React.Fragment>
+      </div>
     );
   }
 }
