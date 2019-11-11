@@ -71,10 +71,31 @@ li {
         padding: 1em;
         border-bottom: 1px solid #ddd;
         font-size: 1.8em;
+        span {
+          display: block;
+        }
+        span:hover {
+          font-weight: bold;
+          cursor: pointer;
+        }
+        div {
+          display: grid;
+          grid-template-columns: 30% 70%;
+          grid-template-rows: 1fr 1fr 1fr;
+          margin-top: 1em;
+          padding: 1em;
+          background-color: #fafafa;
+          img {
+            height: 200px;
+            grid-column: 1/2;
+            grid-row: 1/4;
+          }
+          p {
+            padding: 1em;
+          }
+        }
       }
       li:hover {
-        font-weight: bold;
-        cursor: pointer;
       }
     }
   }

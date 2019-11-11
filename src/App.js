@@ -10,11 +10,13 @@ class App extends Component {
       text: ``,
       textSend: ``,
       listOfFilms: null,
-      loading: true
+      loading: true,
+      index: -1
     };
   }
   handleGetFilms = async text => {
     this.setState({ textSend: text });
+    this.setState({ index: -1 });
     const response = await fetch(
       `http://www.omdbapi.com/?s=${text}&apikey=d41b340d`
     );
@@ -22,6 +24,9 @@ class App extends Component {
     this.setState({ listOfFilms: data.Search, loading: false });
     console.log(data);
     return data;
+  };
+  changeIndex = newIndex => {
+    this.setState({ index: newIndex });
   };
   render() {
     return (
@@ -35,6 +40,8 @@ class App extends Component {
             textSend={this.state.textSend}
             loading={this.state.loading}
             listOfFilms={this.state.listOfFilms}
+            onChangeIndex={this.changeIndex}
+            index={this.state.index}
           />
         ) : (
           ``
