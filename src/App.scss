@@ -1,4 +1,4 @@
-$text-color: blue;
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 * {
   margin: 0;
@@ -6,8 +6,12 @@ $text-color: blue;
   box-sizing: border-box;
 }
 
-body {
+html {
+  font-family: "Roboto", sans-serif;
   font-size: 10px;
+}
+
+body {
 }
 
 li {
@@ -17,25 +21,87 @@ li {
 .main-container {
   display: grid;
 
+  .show-wish-list-button {
+    position: fixed;
+    top: 30px;
+    right: 5%;
+    z-index: 1000;
+    margin: 0;
+    font-size: 1.5rem;
+    background: #fff;
+    padding: 5px;
+    color: #666;
+    border: 3px solid #666;
+  }
+
+  .wish-list {
+    position: fixed;
+    top: 65px;
+    right: 5%;
+    width: 200px;
+    z-index: 1000;
+    background-color: #fff;
+    font-size: 1.2rem;
+    padding: 5px;
+    border: 3px solid #666;
+
+    ul {
+      li {
+        padding: 5px;
+        border-bottom: 1px solid #efefef;
+        display: grid;
+        grid-template-columns: 80% 20%;
+        grid-template-rows: 1fr;
+
+        span {
+          display: grid;
+        }
+        span:first-child {
+          cursor: pointer;
+        }
+        span:first-child:hover {
+          text-decoration: underline;
+        }
+        span:nth-child(2) {
+          justify-items: center;
+          align-items: center;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
   .search-fields,
-  .list-of-films {
+  .list-of-films,
+  .details {
     align-self: center;
     justify-self: center;
     width: 90%;
-    margin: auto;
+    margin: 0 auto;
   }
 
   .search-fields {
-    margin-top: 5%;
-    margin-bottom: 5%;
+    box-sizing: content-box;
+    position: fixed;
+    width: 90%;
+    padding: 5%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 20px 1fr auto;
+    background-color: #fff;
+    z-index: 999;
+
+    .message {
+      grid-column: 1/6;
+      grid-row: 1/2;
+      color: #f00;
+      padding-left: 20px;
+    }
 
     input[type="text"],
     input[type="button"] {
       margin: 0;
-      font-size: 2em;
+      font-size: 2rem;
       background: #fff;
       padding: 20px 20px 20px 20px;
       height: 70px;
@@ -63,14 +129,40 @@ li {
       background-color: #666;
       cursor: pointer;
     }
+    #countries {
+      z-index: 999;
+      grid-column: 1/5;
+      grid-row: 3/4;
+      min-height: 280px;
+    }
+
+    #countries {
+      li {
+        width: 100%;
+        height: 70px;
+        padding: 20px;
+        font-size: 2rem;
+        border-bottom: 1px solid #efefef;
+        color: #666;
+        background-color: #f9f9f9;
+      }
+      li:hover {
+        cursor: pointer;
+        background-color: #efefef;
+      }
+      .active {
+        background-color: #efefef;
+      }
+    }
   }
 
   .list-of-films {
+    margin-top: 20%;
     ul {
       li {
         padding: 1em;
         border-bottom: 1px solid #ddd;
-        font-size: 1.8em;
+        font-size: 1.8rem;
         span {
           display: block;
         }
@@ -78,24 +170,78 @@ li {
           font-weight: bold;
           cursor: pointer;
         }
-        div {
-          display: grid;
-          grid-template-columns: 30% 70%;
-          grid-template-rows: 1fr 1fr 1fr;
-          margin-top: 1em;
-          padding: 1em;
-          background-color: #fafafa;
-          img {
-            height: 200px;
-            grid-column: 1/2;
-            grid-row: 1/4;
-          }
-          p {
-            padding: 1em;
-          }
-        }
       }
       li:hover {
+      }
+    }
+  }
+  .details {
+    display: grid;
+    margin-top: 20%;
+    grid-template-columns: 33% 33% 12% 11% 11%;
+    grid-template-rows: auto auto auto auto auto auto;
+    padding: 1em;
+    background-color: #fafafa;
+    font-size: 1.5rem;
+    max-width: 1200px;
+
+    .title {
+      grid-column: 1/6;
+      grid-row: 1/2;
+      justify-self: center;
+      align-self: center;
+      font-size: 2.2rem;
+      padding: 1%;
+
+      .year {
+        display: inline;
+        font-weight: normal;
+        font-size: 1.1rem;
+      }
+    }
+
+    img {
+      height: 285px;
+      grid-row: 2/5;
+    }
+    .description {
+      grid-column: 2/3;
+      grid-row: 2/3;
+      padding: 1%;
+    }
+    .basic-info {
+      grid-column: 3/6;
+      grid-row: 2/3;
+      padding: 1%;
+      table > tr > td:nth-child(2) {
+        padding-left: 2%;
+      }
+    }
+    .actors {
+      grid-column: 2/3;
+      grid-row: 4/5;
+      padding: 1%;
+    }
+    .awards {
+      grid-column: 3/6;
+      grid-row: 3/4;
+      padding: 1%;
+    }
+    .ratings {
+      grid-column: 3/6;
+      grid-row: 4/5;
+      padding: 1%;
+    }
+    .navi {
+      display: grid;
+      grid-column: 5/6;
+      grid-row: 1/2;
+
+      .close,
+      .add-to-wish-list {
+        padding: 1%;
+        cursor: pointer;
+        justify-self: right;
       }
     }
   }

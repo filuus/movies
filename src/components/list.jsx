@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Detail from "./detail";
 
 class List extends Component {
   constructor(props) {
@@ -8,8 +7,8 @@ class List extends Component {
       index: -1
     };
   }
-  handleChangeActive = e => {
-    this.props.onChangeIndex(parseInt(e.target.getAttribute("data-index")));
+  handleGetFilm = e => {
+    this.props.getFilm(e.target.getAttribute("data-index"));
   };
   render() {
     return (
@@ -21,17 +20,9 @@ class List extends Component {
             {this.props.listOfFilms.map((film, index) => {
               return (
                 <li key={film.imdbID}>
-                  <span data-index={index} onClick={this.handleChangeActive}>
+                  <span data-index={film.imdbID} onClick={this.handleGetFilm}>
                     {film.Title}
                   </span>
-                  {this.props.index === index ? (
-                    <Detail
-                      year={film.Year}
-                      imdbID={film.imdbID}
-                      type={film.Type}
-                      poster={film.Poster}
-                    />
-                  ) : null}
                 </li>
               );
             })}
