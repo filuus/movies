@@ -9,9 +9,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: ``,
       textSend: ``,
-      listOfFilms: null,
+      listOfFilms: [],
       loading: true,
       index: -1,
       listOfHints: null,
@@ -21,7 +20,9 @@ class App extends Component {
       message: ``,
       film: null,
       detailActive: false,
-      resultsActive: false
+      resultsActive: false,
+      page: 1,
+      buttonShowMoreActive: true
     };
   }
   componentDidMount = () => {
@@ -29,7 +30,7 @@ class App extends Component {
       this.addToWishList(element.split(`=`)[0], `title`);
     });
   };
-  handleGetFilms = async (text, isSend = 0, id = ``) => {
+  handleGetFilms = async (text, isSend = 0) => {
     text = text.replace(/ - /g, ` `);
     const response = await fetch(
       `http://www.omdbapi.com/?s=${text}&apikey=d41b340d`
@@ -38,9 +39,24 @@ class App extends Component {
     if (isSend) {
       if (data.Response === `True`) {
         this.setState({
+          buttonShowMoreActive:
+            this.state.page + 1 <= Math.ceil(data.totalResults / 10)
+        });
+        if (this.state.page <= Math.ceil(data.totalResults / 10)) {
+          const page = await fetch(
+            `http://www.omdbapi.com/?s=${text}&page=${this.state.page}&apikey=d41b340d`
+          );
+          const dataPage = await page.json();
+          this.setState(state => ({
+            listOfFilms: [...state.listOfFilms, ...dataPage.Search]
+          }));
+          this.setState(state => ({
+            page: state.page + 1
+          }));
+        }
+        this.setState({
           textSend: text,
           index: -1,
-          listOfFilms: data.Search,
           loading: false,
           listActive: false,
           message: ``,
@@ -107,7 +123,14 @@ class App extends Component {
   };
   hiddenDetails = () => {
     this.setState({
-      detailActive: false
+      detailActive: false,
+      resultsActive: true
+    });
+  };
+  resetListOfFilms = () => {
+    this.setState({
+      listOfFilms: [],
+      page: 1
     });
   };
   render() {
@@ -137,6 +160,7 @@ class App extends Component {
           message={this.state.message}
           hiddenWishList={this.hiddenWishList}
           getFilm={this.getFilm}
+          resetListOfFilms={this.resetListOfFilms}
         />
         {this.state.resultsActive ? (
           <List
@@ -149,6 +173,8 @@ class App extends Component {
             removeToWishList={this.removeToWishList}
             wishList={this.state.wishList}
             getFilm={this.getFilm}
+            getFilms={this.handleGetFilms}
+            buttonShowMoreActive={this.state.buttonShowMoreActive}
           />
         ) : (
           ``

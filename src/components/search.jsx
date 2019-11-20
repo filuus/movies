@@ -39,6 +39,7 @@ class Search extends Component {
     } else if (e.keyCode === 13) {
       //13 ENTER
       if (this.state.activeIndex === -1) {
+        this.props.resetListOfFilms();
         this.props.onGetFilms(this.state.value, 1);
       } else {
         this.setState(

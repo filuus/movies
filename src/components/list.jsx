@@ -10,7 +10,11 @@ class List extends Component {
   handleGetFilm = e => {
     this.props.getFilm(e.target.getAttribute("data-index"));
   };
+  handleAddFilms = () => {
+    this.props.getFilms(this.props.textSend, 1);
+  };
   render() {
+    console.log(this.props.buttonShowMoreActive);
     return (
       <div className="list-of-films">
         {this.props.loading || !this.props.listOfFilms ? (
@@ -28,6 +32,16 @@ class List extends Component {
             })}
           </ul>
         )}
+        <button
+          onClick={this.handleAddFilms}
+          className={
+            this.props.buttonShowMoreActive
+              ? "show-more-button"
+              : "show-more-button disactive"
+          }
+        >
+          Show more
+        </button>
       </div>
     );
   }

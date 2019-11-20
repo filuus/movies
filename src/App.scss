@@ -157,7 +157,7 @@ li {
   }
 
   .list-of-films {
-    margin-top: 20%;
+    margin-top: 30%;
     ul {
       li {
         padding: 1em;
@@ -173,6 +173,22 @@ li {
       }
       li:hover {
       }
+    }
+    .show-more-button {
+      display: grid;
+      margin: 2% auto;
+      font-size: 1.5rem;
+      background: #fff;
+      padding: 5px;
+      color: #666;
+      border: 3px solid #666;
+      cursor: pointer;
+    }
+    button.disactive {
+      background-color: #ededed;
+      border-color: #cdcdcd;
+      color: #cdcdcd;
+      cursor: not-allowed;
     }
   }
   .details {
@@ -257,12 +273,19 @@ li {
         height: 70px;
       }
     }
+    .list-of-films {
+      margin-top: 27%;
+    }
   }
 }
 @media (min-width: 768px) {
   .main-container {
     .show-wish-list-button {
       top: 30px;
+    }
+
+    .list-of-films {
+      margin-top: 20%;
     }
 
     .details {
@@ -288,6 +311,7 @@ li {
 
       img {
         width: auto;
+        max-width: 80%;
         height: 285px;
         grid-column: 1/2;
         grid-row: 2/5;

@@ -58,6 +58,8 @@ List of features:
 To-do list:
 
 - Adapting the website to mobile devices(RWD)
+- Correct a search engine error
+- Use destructurization (when displaying details)
 
 ## Status
 

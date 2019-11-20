@@ -65,7 +65,11 @@ class Detail extends Component {
           <span className="year">({this.props.film.Year})</span>
         </h2>
 
-        <img className="poster" src={this.props.film.Poster} />
+        <img
+          className="poster"
+          src={this.props.film.Poster}
+          alt={this.props.film.Title + " - poster"}
+        />
 
         <div className="description">
           <p className="plot">{this.props.film.Plot}</p>
