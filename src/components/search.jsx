@@ -13,6 +13,7 @@ class Search extends Component {
     };
   }
   handleGetFilms = e => {
+    this.props.resetListOfFilms();
     this.props.onGetFilms(this.state.value, 1);
   };
   handleChange = event => {
